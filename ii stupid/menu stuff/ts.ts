@@ -5559,27 +5559,6 @@ new ButtonInfo({
                 rot
             );
 
-            // queue hue/sat/scale to apply once GBO is ready
-            if (spawned && !spawned.isNull?.()) {
-                const applyHue = getIndex("Set Hue For Spawn")?.enabled ? hueVal : null;
-                const applySat = getIndex("Set Sat For Spawn")?.enabled ? satVal : null;
-                const applyScale = getIndex("Set Scale For Spawn")?.enabled
-                    ? scaleVal
-                    : (sizespawner !== 0 ? Math.floor(sizespawner) : null);
-
-                if (applyHue !== null || applySat !== null || applyScale !== null) {
-                    pendingSpawnApply.push({
-                        obj: spawned,
-                        hue: applyHue,
-                        sat: applySat,
-                        scale: applyScale,
-                        frame: frameCount
-                    });
-                }
-            } else {
-                console.log("[spawn] spawned obj is null");
-            }
-
         } catch (e) {
             console.error("Grip spawn error:", e);
         }
@@ -10243,37 +10222,6 @@ new ButtonInfo({
 						itemIDRaw,
 						pos,
 						rot
-					);
-
-					if (!spawned || spawned.isNull?.()) {
-						sendNotification("Spawn failed!", false);
-						return;
-					}
-
-					const spawnedGBO = spawned
-						.method("GetComponent", 1)
-						.inflate(GBOClass)
-						.invoke();
-
-					if (spawnedGBO && !spawnedGBO.handle.isNull()) {
-						try {
-							spawnedGBO.method("set_colorHue").invoke(hue);
-						} catch (_) {}
-
-						try {
-							spawnedGBO.method("set_colorSaturation").invoke(sat);
-						} catch (_) {}
-
-						try {
-							spawnedGBO.method("set_scaleModifier").invoke(scale);
-						} catch (_) {}
-					}
-
-					sendNotification(
-						"Spawned! Hue:" + hue +
-						" Sat:" + sat +
-						" Scale:" + scale,
-						false
 					);
 
 				} catch (e) {
