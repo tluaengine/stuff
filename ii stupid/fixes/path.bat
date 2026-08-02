@@ -1,1 +1,0 @@
-setx PATH "%PATH%;%localappdata%\Programs\Python\Python314\Scripts"
