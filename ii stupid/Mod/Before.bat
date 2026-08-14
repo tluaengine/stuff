@@ -1,6 +1,6 @@
 @echo off
 cd /d "%~dp0"
-if not exist "game_dir.txt" call get_game_dir.bat
+if not exist "game_dir.txt" get_game_dir.bat
 set /p game_dir=<game_dir.txt
 echo game directory?: %game_dir%
 
