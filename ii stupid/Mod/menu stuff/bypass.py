@@ -61,6 +61,13 @@ def inject_frida():
         print(f"{LPURPLE}   [x] {RESET}Injection failed: {e}")
         return False
 
+def run_incinit():
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    bat_path = os.path.join(
+        script_dir, "..", "..", "bin", "Launcher", "IncInit.bat"
+    )
+    subprocess.run(bat_path, shell=True, check=True)
+
 def main():
     try:
         kernel32 = __import__('ctypes').windll.kernel32
@@ -125,6 +132,7 @@ def main():
     print()
     print(f"{GRAY}   Keep this window open!{RESET}")
     print()
+    run_incinit()
 
     injected = False
     try:
