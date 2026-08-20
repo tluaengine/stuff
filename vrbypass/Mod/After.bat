@@ -1,1 +1,0 @@
-frida -l ac_bridge.js -l symbols.ts -l SteamVRBypass.ts "EACLauncher.exe"
