@@ -1,3 +1,4 @@
+declare const Il2Cpp: any;
 Il2Cpp.$config.exports = {
 	il2cpp_init: () => Il2Cpp.module.findExportByName("MQxvkRMTasW"),
 	il2cpp_init_utf16: () => Il2Cpp.module.findExportByName("_YYxGnwYJHr"),
